@@ -1,0 +1,11 @@
+DROP SCHEMA IF EXISTS study_tracker CASCADE;
+CREATE SCHEMA study_tracker;
+CREATE TABLE IF NOT EXISTS StudySessions (
+    SessionID SERIAL PRIMARY KEY,
+    OwningUserID INT REFERENCES Users(UserID) ON DELETE CASCADE,
+    SessionName NVARCHAR(100) NOT NULL,
+    StartTime TIMESTAMP DEFAULT NOW(),  
+    EndTime TIMESTAMP DEFAULT NULL,     
+    Duration INTERVAL DEFAULT '0 hours', 
+    CreationDate TIMESTAMP DEFAULT NOW()
+);
